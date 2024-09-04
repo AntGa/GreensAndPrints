@@ -2,26 +2,30 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from 'framer-motion'
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 
 export const Navbar = () => {
   const { scrollY } = useScroll()
-  const [isHovered, setIsHovered] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-
-  const scrollYProgress = useTransform(scrollY, [0, 100], [0, 1])
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [isNavbarHovered, setIsNavbarHovered] = useState(false)
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > 100)
+    setIsScrolled(latest > 50)
   })
 
-  const handleMouseEnter = () => setIsHovered(true)
-  const handleMouseLeave = () => setIsHovered(false)
+  const handleMouseEnter = () => {
+    setIsNavbarHovered(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsNavbarHovered(false)
+    setHoveredIndex(null)
+  }
+
+  const handleLinkMouseEnter = (index: number) => {
+    setHoveredIndex(index)
+  }
 
   const navbar_variants = {
     hovered: {
@@ -33,57 +37,90 @@ export const Navbar = () => {
   }
 
   const bar_variants = {
-    hovered: { width: '100%' },
-    not_hovered: { width: '65%' },
+    hovered: { maxWidth: '1920px' },
+    not_hovered: { maxWidth: '1380px' },
   }
 
   return (
     <motion.div
-      className="sticky top-0 z-50 p-4 pb-0 text-solid-deep-forest-green"
+      className={`absolute left-0 top-0 w-full pt-4 text-solid-deep-forest-green ${
+        isScrolled ? 'sticky' : 'z-50'
+      } ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       variants={navbar_variants}
-      animate={isHovered || isScrolled ? 'hovered' : 'not_hovered'}
-      transition={{ duration: 0.5 }}
+      animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
+      transition={{ duration: 0.25 }}
     >
-      <div className="flex w-full items-center justify-around">
-        <ul className="flex gap-9 text-lg">
-          <li>
-            <Link href="/#">All Products</Link>
-          </li>
-          <li>
-            <Link href="/#">About Us</Link>
-          </li>
-          <li>
-            <Link href="/#">Locations</Link>
-          </li>
-          <li>
-            <Link href="/#">Contact Us</Link>
-          </li>
-        </ul>
-        <h1 className="flex-1 text-center font-playFair text-3xl font-semibold">
+      <div className="relative m-auto flex w-full max-w-[1370px] items-center justify-between px-4 lg:px-8">
+        <div className="flex items-center gap-9 text-lg">
+          <div className="xl:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </div>
+
+          <ul className="hidden gap-9 text-lg xl:flex">
+            {['All Products', 'Locations', 'Contact Us'].map(
+              (item, index: number) => (
+                <li
+                  key={index}
+                  className="flex flex-col items-center"
+                  onMouseEnter={() => handleLinkMouseEnter(index)}
+                >
+                  <Link href="/#">{item}</Link>
+                  <motion.div
+                    className="h-[1px] w-full bg-black"
+                    initial={{ width: 0 }}
+                    animate={{
+                      width: hoveredIndex === index ? '100%' : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+
+        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-3xl font-semibold">
           Greens & Prints
         </h1>
-        <div className="flex flex-1">
-          <ul className="flex gap-9 text-lg">
-            <li>
-              <Link href="/#">About Us</Link>
-            </li>
-            <li>
-              <Link href="/#">Locations</Link>
-            </li>
-            <li>
-              <Link href="/#">Contact Us</Link>
-            </li>
-          </ul>
+
+        <div className="flex gap-9 text-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+            />
+          </svg>
         </div>
       </div>
       <motion.div
         variants={bar_variants}
         initial="not_hovered"
-        animate={isHovered || isScrolled ? 'hovered' : 'not_hovered'}
-        transition={{ duration: 0.5 }}
-        className="mx-auto mt-5 h-[1px] bg-black"
+        animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
+        transition={{ duration: 0.8 }}
+        className="mx-auto mt-5 h-[0.5px] bg-black"
       />
     </motion.div>
   )

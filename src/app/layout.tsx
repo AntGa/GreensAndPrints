@@ -5,7 +5,7 @@ import SmoothScroll from '@/components/SmoothScroll'
 import { Playfair_Display } from 'next/font/google'
 import { Navbar } from '@/components/ui/Navbar'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const Playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playFair',
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${Playfair.className}`}>
+      <body className={`${inter.className} ${Playfair.className} relative`}>
         <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
