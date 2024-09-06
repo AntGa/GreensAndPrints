@@ -52,7 +52,7 @@ export const Navbar = () => {
       animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
       transition={{ duration: 0.25 }}
     >
-      <div className="relative m-auto flex w-full max-w-[1370px] items-center justify-between px-4 lg:px-8">
+      <div className="relative m-auto flex h-full w-full max-w-[1370px] items-center justify-between px-4 lg:px-8">
         <div className="flex items-center gap-9 text-lg">
           <div className="xl:hidden">
             <svg
@@ -94,7 +94,7 @@ export const Navbar = () => {
           </ul>
         </div>
 
-        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-3xl font-semibold">
+        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair font-semibold max-sm:text-2xl sm:text-2xl md:text-3xl">
           Greens & Prints
         </h1>
 
