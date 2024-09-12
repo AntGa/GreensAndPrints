@@ -30,20 +30,22 @@ export const Navbar = () => {
   const navbar_variants = {
     hovered: {
       backgroundColor: '#FAF9F6',
+      color: '#2F4F4F',
     },
     not_hovered: {
       backgroundColor: '#ffffff00',
+      color: '#FCF7E6',
     },
   }
 
   const bar_variants = {
-    hovered: { maxWidth: '1920px' },
-    not_hovered: { maxWidth: '1380px' },
+    hovered: { maxWidth: '1920px', backgroundColor: '#000000' },
+    not_hovered: { maxWidth: '1380px', backgroundColor: '#FCF7E6' },
   }
 
   return (
     <motion.div
-      className={`absolute left-0 top-0 w-full pt-4 text-solid-deep-forest-green ${
+      className={`absolute left-0 top-0 z-50 w-full pt-4 text-solid-deep-forest-green ${
         isScrolled ? 'sticky' : 'z-50'
       } ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
       onMouseEnter={handleMouseEnter}
@@ -52,7 +54,7 @@ export const Navbar = () => {
       animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
       transition={{ duration: 0.25 }}
     >
-      <div className="relative m-auto flex w-full max-w-[1370px] items-center justify-between px-4 lg:px-8">
+      <div className="relative m-auto flex h-full w-full max-w-[1370px] items-center justify-between px-4 lg:px-8">
         <div className="flex items-center gap-9 text-lg">
           <div className="xl:hidden">
             <svg
@@ -94,7 +96,7 @@ export const Navbar = () => {
           </ul>
         </div>
 
-        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-3xl font-semibold">
+        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-2xl font-semibold md:text-4xl">
           Greens & Prints
         </h1>
 
