@@ -1,4 +1,6 @@
 import HeroCarousel from '@/components/Homepage/HeroCarousel'
+import { OurFavourites } from '@/components/Homepage/OurFavourites/OurFavourites'
+import { ValuesBanner } from '@/components/Homepage/ValuesBanner'
 
 export default function Home() {
   return (
@@ -6,9 +8,9 @@ export default function Home() {
       <div className="min-h-screen bg-white">
         <div className="flex flex-col gap-3">
           <HeroCarousel />
-          <div className="h-[100vh] w-full bg-[#2D2D2D]"></div>
-          <div className="h-[100vh] w-full bg-[#2D2D2D]"></div>
-          <div className="h-[100vh] w-full bg-[#2D2D2D]"></div>
+          <ValuesBanner />
+          <OurFavourites />
+          <div className="h-[100vh] w-full bg-[#E4E8E0]"></div>
         </div>
       </div>
     </>

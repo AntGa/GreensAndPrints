@@ -30,15 +30,17 @@ export const Navbar = () => {
   const navbar_variants = {
     hovered: {
       backgroundColor: '#FAF9F6',
+      color: '#2F4F4F',
     },
     not_hovered: {
       backgroundColor: '#ffffff00',
+      color: '#FCF7E6',
     },
   }
 
   const bar_variants = {
-    hovered: { maxWidth: '1920px' },
-    not_hovered: { maxWidth: '1380px' },
+    hovered: { maxWidth: '1920px', backgroundColor: '#000000' },
+    not_hovered: { maxWidth: '1380px', backgroundColor: '#FCF7E6' },
   }
 
   return (
@@ -94,7 +96,7 @@ export const Navbar = () => {
           </ul>
         </div>
 
-        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair font-semibold max-sm:text-2xl sm:text-2xl md:text-3xl">
+        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-2xl font-semibold md:text-4xl">
           Greens & Prints
         </h1>
 

@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         'deep-forest-green': 'rgba(47, 79, 79, 0.7)',
-        'solid-deep-forest-green': '#2F4F4F',
+        'solid-deep-forest-green': '#2D4739',
         'creamy-white': '#FAF9F6',
         'gold-accent': '#DAA520',
         'moss-green': '#8FBC8F',
@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         playFair: ['var(--font-playFair)'],
         inter: ['var(--font-inter'],
+        Helvetica: ['var(--font-Helvetica)'],
       },
     },
   },

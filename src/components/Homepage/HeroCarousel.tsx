@@ -3,7 +3,7 @@ import React, { useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 
 const HeroCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }) // Set loop to true
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev()
@@ -17,16 +17,16 @@ const HeroCarousel = () => {
     <div className="relative">
       <div className="embla h-[100vh] w-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex">
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-red-500">
+          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-deep-forest-green">
             Slide 1
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-blue-500">
+          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
             Slide 2
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-green-500">
+          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
             Slide 3
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-yellow-500">
+          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
             Slide 4
           </div>
         </div>
