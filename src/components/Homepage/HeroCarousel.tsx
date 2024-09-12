@@ -3,7 +3,7 @@ import React, { useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 
 const HeroCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }) // Set loop to true
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev()

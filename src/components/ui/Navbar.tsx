@@ -43,7 +43,7 @@ export const Navbar = () => {
 
   return (
     <motion.div
-      className={`absolute left-0 top-0 w-full pt-4 text-solid-deep-forest-green ${
+      className={`absolute left-0 top-0 z-50 w-full pt-4 text-solid-deep-forest-green ${
         isScrolled ? 'sticky' : 'z-50'
       } ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
       onMouseEnter={handleMouseEnter}
