@@ -45,7 +45,7 @@ export const Navbar = () => {
 
   return (
     <motion.div
-      className={`absolute left-0 top-0 z-50 w-full pt-4 text-solid-deep-forest-green ${
+      className={`absolute left-0 top-0 z-50 w-full text-creamy-white ${
         isScrolled ? 'sticky' : 'z-50'
       } ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
       onMouseEnter={handleMouseEnter}
@@ -73,12 +73,12 @@ export const Navbar = () => {
             </svg>
           </div>
 
-          <ul className="hidden gap-9 text-lg xl:flex">
+          <ul className="font-geist m-6 hidden h-full items-center gap-9 text-lg xl:flex">
             {['All Products', 'Locations', 'Contact Us'].map(
               (item, index: number) => (
                 <li
                   key={index}
-                  className="flex flex-col items-center"
+                  className="flex h-full flex-col items-center justify-center"
                   onMouseEnter={() => handleLinkMouseEnter(index)}
                 >
                   <Link href="/#">{item}</Link>
@@ -96,7 +96,7 @@ export const Navbar = () => {
           </ul>
         </div>
 
-        <h1 className="absolute left-1/2 -translate-x-1/2 transform font-playFair text-2xl font-semibold md:text-4xl">
+        <h1 className="absolute left-1/2 -mt-2 -translate-x-1/2 transform font-playFair text-2xl font-semibold md:text-4xl">
           Greens & Prints
         </h1>
 
@@ -122,7 +122,7 @@ export const Navbar = () => {
         initial="not_hovered"
         animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
         transition={{ duration: 0.8 }}
-        className="mx-auto mt-5 h-[0.5px] bg-black"
+        className="mx-auto h-[0.5px] bg-black"
       />
     </motion.div>
   )
