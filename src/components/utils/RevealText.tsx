@@ -37,7 +37,7 @@ export const RevealText: React.FC<AnimatedTextProps> = ({
       className="clipped"
       variants={container}
       initial="hidden"
-      animate="show"
+      whileInView="show"
       custom={duration}
       viewport={inView ? { once } : undefined}
     >
