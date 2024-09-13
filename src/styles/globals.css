@@ -39,11 +39,11 @@
 .progress-rectangle {
   width: 2rem;
   height: 0.5rem;
-  background-color: #d1d5db;
+  background-color: #e0d9c8;
   margin: 0 0.5rem;
   transition: background-color 0.3s ease-in-out;
 }
 
 .progress-rectangle.bg-green-500 {
-  background-color: #10b981;
+  background-color: #333333;
 }

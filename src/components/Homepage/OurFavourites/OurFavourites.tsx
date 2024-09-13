@@ -13,12 +13,12 @@ export default async function OurFavourites() {
       <div className="flex items-center max-sm:flex-col sm:justify-between">
         <RevealText
           text="Our Favourites"
-          className="my-5 text-4xl font-semibold md:text-5xl"
+          className="mb-5 text-4xl font-semibold md:text-5xl"
           duration={3}
           inView={true}
           once={true}
         />
-        <button className="bg-charcoal-gray rounded px-4 py-2 text-white">
+        <button className="rounded bg-charcoal-gray px-4 py-2 text-white">
           Shop Now
         </button>
       </div>

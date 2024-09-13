@@ -7,6 +7,7 @@ module.exports = {
         'deep-forest-green': 'rgba(47, 79, 79, 0.7)',
         'soft-ivory': '#F7F1E3',
         'charcoal-gray': '#333333',
+        'dark-taupe': '#E0D9C8',
       },
       fontFamily: {
         playFair: ['var(--font-playFair)'],

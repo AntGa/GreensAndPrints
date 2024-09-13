@@ -60,7 +60,7 @@ export const ValuesBanner = () => {
 
   const numberOfSlides = 3
   return (
-    <div className="values-carousel embla bg-soft-ivory w-full">
+    <div className="values-carousel embla w-full bg-soft-ivory">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container mx-auto flex">
           <div className="embla__slide flex w-full flex-col px-4">
@@ -98,6 +98,7 @@ export const ValuesBanner = () => {
               <div
                 key={index}
                 className={`progress-rectangle ${
+                  //worst way to do this.
                   index === selectedIndex ? 'bg-green-500' : 'bg-gray-300'
                 } mx-2 h-2 w-8`}
               />
