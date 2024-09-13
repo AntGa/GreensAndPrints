@@ -4,6 +4,7 @@ import { GeistSans } from 'geist/font/sans'
 import SmoothScroll from '@/components/SmoothScroll'
 import { Playfair_Display } from 'next/font/google'
 import { Navbar } from '@/components/ui/Navbar'
+import { Analytics } from '@vercel/analytics/react'
 
 const Playfair = Playfair_Display({
   subsets: ['latin'],
@@ -25,7 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Playfair.className} ${GeistSans.variable} relative`}>
         <Navbar />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          {children}
+          <Analytics />
+        </SmoothScroll>
       </body>
     </html>
   )

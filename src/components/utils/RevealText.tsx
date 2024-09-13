@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 interface AnimatedTextProps {
   text: string
-  textSize?: string
+  className?: string
   duration?: number
   inView?: boolean
   once?: boolean
@@ -27,7 +27,7 @@ const item = {
 
 export const RevealText: React.FC<AnimatedTextProps> = ({
   text,
-  textSize = 'text-4xl',
+  className = 'text-4xl',
   duration = 2,
   inView = true,
   once = true,
@@ -43,7 +43,7 @@ export const RevealText: React.FC<AnimatedTextProps> = ({
     >
       {text.split('').map((char, index) => (
         <motion.span
-          className={`inline-block ${textSize}`}
+          className={`inline-block ${className}`}
           variants={item}
           key={index}
         >

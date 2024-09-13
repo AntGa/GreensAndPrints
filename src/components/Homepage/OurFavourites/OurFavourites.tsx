@@ -4,31 +4,26 @@ import { getCollectionProducts } from '@/lib/shopify'
 import OurFavouritesCarousel from './OurFavouritesCarousel'
 
 export default async function OurFavourites() {
-  // Fetch products data from Shopify
   const products = await getCollectionProducts({
     collection: 'hidden-homepage-carousel',
   })
 
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between">
+    <div className="text-5 flex w-full max-w-7xl flex-col overflow-hidden p-4 sm:mx-auto">
+      <div className="flex items-center max-sm:flex-col sm:justify-between">
         <RevealText
           text="Our Favourites"
-          textSize="text-4xl"
+          className="my-5 text-4xl font-semibold md:text-5xl"
           duration={3}
           inView={true}
           once={true}
         />
-        {/* Example Button */}
-        <button className="rounded bg-green-500 px-4 py-2 text-white">
-          Cool Button
+        <button className="bg-charcoal-gray rounded px-4 py-2 text-white">
+          Shop Now
         </button>
       </div>
 
-      {/* Pass the products to the Carousel */}
       <OurFavouritesCarousel products={products} />
-
-      <div>Products</div>
     </div>
   )
 }
