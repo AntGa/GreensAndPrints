@@ -96,7 +96,7 @@ export const Navbar = () => {
           </ul>
         </div>
 
-        <h1 className="absolute left-1/2 -mt-2 -translate-x-1/2 transform font-playFair text-2xl font-semibold md:text-4xl">
+        <h1 className="absolute left-1/2 -mt-2 -translate-x-1/2 transform font-playFair text-2xl font-semibold sm:text-4xl">
           Greens & Prints
         </h1>
 
@@ -107,7 +107,7 @@ export const Navbar = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className="m-6 size-6"
           >
             <path
               strokeLinecap="round"

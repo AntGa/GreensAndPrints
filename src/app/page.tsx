@@ -1,6 +1,6 @@
 import HeroCarousel from '@/components/Homepage/HeroCarousel'
 import { OurFavourites } from '@/components/Homepage/OurFavourites/OurFavourites'
-import { ValuesBanner } from '@/components/Homepage/ValuesBanner'
+import { ValuesBanner } from '@/components/Homepage/ValuesBanner/ValuesBanner'
 
 export default function Home() {
   return (

@@ -1,6 +1,7 @@
 'use client'
 import React, { useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
+import './ValuesBanner/ValuesBanner.css'
 
 const HeroCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
