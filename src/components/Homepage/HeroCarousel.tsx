@@ -1,7 +1,6 @@
 'use client'
 import React, { useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import './ValuesBanner/ValuesBanner.css'
 
 const HeroCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
@@ -21,13 +20,13 @@ const HeroCarousel = () => {
           <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-deep-forest-green">
             Slide 1
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
+          <div className="embla__slide bg-soft-ivory h-[100vh] flex-[0_0_100%]">
             Slide 2
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
+          <div className="embla__slide bg-soft-ivory h-[100vh] flex-[0_0_100%]">
             Slide 3
           </div>
-          <div className="embla__slide h-[100vh] flex-[0_0_100%] bg-creamy-white">
+          <div className="embla__slide bg-soft-ivory h-[100vh] flex-[0_0_100%]">
             Slide 4
           </div>
         </div>

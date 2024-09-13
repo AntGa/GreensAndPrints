@@ -2,30 +2,25 @@
 
 import React, { useEffect, useState, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel'
 
 export const ValuesBanner = () => {
-  const [emblaRef, embla] = useEmblaCarousel({ loop: false })
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true })
   const [isMobile, setIsMobile] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [slideCount, setSlideCount] = useState(0)
 
-  // Update the slider based on screen size
   const handleResize = useCallback(() => {
     if (typeof window !== 'undefined') {
-      // Check if window is defined
       setIsMobile(window.innerWidth < 1024)
     }
   }, [])
 
-  // Update selected index for progress indicators
   const handleSelect = useCallback(() => {
     if (embla) {
       setSelectedIndex(embla.selectedScrollSnap())
     }
   }, [embla])
 
-  // Check the number of slides
   const checkSlides = useCallback(() => {
     if (embla) {
       const slideCount = embla.scrollSnapList().length
@@ -50,28 +45,22 @@ export const ValuesBanner = () => {
     }
   }, [embla, handleSelect, checkSlides])
 
-  const watchDrag = useCallback(
-    (emblaApi: EmblaCarouselType, event: MouseEvent | TouchEvent) => {
-      if (slideCount <= 1 || !isMobile) {
-        return false
-      }
-      return true
-    },
-    [isMobile, slideCount]
-  )
-
   useEffect(() => {
     if (embla) {
       embla.reInit({
-        watchDrag: (emblaApi, event) => watchDrag(emblaApi, event),
+        watchDrag: (emblaApi, event) => {
+          if (!isMobile) {
+            return false
+          }
+          return true
+        },
       })
     }
-  }, [embla, watchDrag])
+  }, [embla, isMobile, slideCount])
 
-  const numberOfSlides = 3 // Update this as needed
-
+  const numberOfSlides = 3
   return (
-    <div className="values-carousel embla w-full">
+    <div className="values-carousel embla bg-soft-ivory w-full">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container mx-auto flex">
           <div className="embla__slide flex w-full flex-col px-4">
@@ -101,7 +90,6 @@ export const ValuesBanner = () => {
         </div>
       </div>
 
-      {/* Progress Rectangles */}
       {isMobile && (
         <div className="progress-indicators mt-4 flex justify-center">
           {Array(numberOfSlides)

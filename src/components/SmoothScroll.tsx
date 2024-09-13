@@ -1,7 +1,6 @@
 'use client'
 
 import { ReactLenis, useLenis } from 'lenis/react'
-import { Children } from 'react'
 
 function SmoothScroll({
   children,

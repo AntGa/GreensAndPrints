@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { RevealText } from '../utils/RevealText'
 
 export const Navbar = () => {
   const { scrollY } = useScroll()
@@ -29,23 +30,23 @@ export const Navbar = () => {
 
   const navbar_variants = {
     hovered: {
-      backgroundColor: '#FAF9F6',
-      color: '#2F4F4F',
+      backgroundColor: '#F7F1E3',
+      color: '#333333',
     },
     not_hovered: {
       backgroundColor: '#ffffff00',
-      color: '#FCF7E6',
+      color: '#F7F1E3',
     },
   }
 
   const bar_variants = {
     hovered: { maxWidth: '1920px', backgroundColor: '#000000' },
-    not_hovered: { maxWidth: '1380px', backgroundColor: '#FCF7E6' },
+    not_hovered: { maxWidth: '1380px', backgroundColor: '#F7F1E3' },
   }
 
   return (
     <motion.div
-      className={`absolute left-0 top-0 z-50 w-full text-creamy-white ${
+      className={`text-soft-ivory absolute left-0 top-0 z-50 w-full ${
         isScrolled ? 'sticky' : 'z-50'
       } ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
       onMouseEnter={handleMouseEnter}
@@ -73,7 +74,7 @@ export const Navbar = () => {
             </svg>
           </div>
 
-          <ul className="font-geist m-6 hidden h-full items-center gap-9 text-lg xl:flex">
+          <ul className="m-6 hidden h-full items-center gap-9 font-geist text-lg xl:flex">
             {['All Products', 'Locations', 'Contact Us'].map(
               (item, index: number) => (
                 <li
