@@ -65,14 +65,3 @@
   justify-content: center;
   flex-direction: column;
 }
-
-.overlay h1 {
-  font-size: 65px;
-  letter-spacing: 0px;
-  margin: 0 0 5px;
-}
-
-.overlay p {
-  margin: 0;
-  font-size: 28px;
-}
