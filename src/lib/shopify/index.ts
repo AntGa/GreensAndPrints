@@ -2,6 +2,7 @@ import { ensureStartsWith } from '../utils'
 import {
   getCollectionProductsQuery,
   getCollectionsQuery,
+  getCollectionQuery,
 } from './queries/collections'
 import {
   HIDDEN_PRODUCT_TAG,
@@ -278,4 +279,18 @@ export async function getProducts({
   })
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products))
+}
+
+export async function getCollection(
+  handle: string
+): Promise<Collection | undefined> {
+  const res = await shopifyFetch<ShopifyCollectionOperation>({
+    query: getCollectionQuery,
+    tags: [TAGS.collections],
+    variables: {
+      handle,
+    },
+  })
+
+  return reshapeCollection(res.body.data.collection)
 }
