@@ -34,6 +34,11 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
 } from '../types'
+import {
+  getProductQuery,
+  getProductRecommendationsQuery,
+  getProductsQuery,
+} from './queries/product'
 
 import { isShopifyError } from '../type-guards'
 
@@ -251,4 +256,26 @@ export async function getCollections(): Promise<Collection[]> {
   ]
 
   return collections
+}
+
+export async function getProducts({
+  query,
+  reverse,
+  sortKey,
+}: {
+  query?: string
+  reverse?: boolean
+  sortKey?: string
+}): Promise<Product[]> {
+  const res = await shopifyFetch<ShopifyProductsOperation>({
+    query: getProductsQuery,
+    tags: [TAGS.products],
+    variables: {
+      query,
+      reverse,
+      sortKey,
+    },
+  })
+
+  return reshapeProducts(removeEdgesAndNodes(res.body.data.products))
 }
