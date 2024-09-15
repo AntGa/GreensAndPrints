@@ -2,10 +2,12 @@ import type { Metadata } from 'next'
 import '../styles/globals.css'
 import { GeistSans } from 'geist/font/sans'
 import SmoothScroll from '@/components/SmoothScroll'
-import { Playfair_Display } from 'next/font/google'
+import { Cardo, Playfair_Display } from 'next/font/google'
 import { Navbar } from '@/components/layout/Navbar/Navbar'
 import { Analytics } from '@vercel/analytics/react'
-
+import { CartProvider } from '@/components/cart/cart-context'
+import { cookies } from 'next/headers'
+import { getCart } from '@/lib/shopify'
 const Playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playFair',
@@ -22,14 +24,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cartId = cookies().get('cartId')?.value
+  // Don't await the fetch, pass the Promise to the context provider
+  const cart = getCart(cartId)
   return (
     <html lang="en" className="bg-soft-ivory">
       <body className={`${Playfair.className} ${GeistSans.variable} relative`}>
-        <Navbar />
-        <SmoothScroll>
-          {children}
-          <Analytics />
-        </SmoothScroll>
+        <CartProvider cartPromise={cart}>
+          <Navbar />
+          <SmoothScroll>
+            {children}
+            <Analytics />
+          </SmoothScroll>
+        </CartProvider>
       </body>
     </html>
   )
