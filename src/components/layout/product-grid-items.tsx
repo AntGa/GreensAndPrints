@@ -1,5 +1,5 @@
-import Grid from '@/components/Grid'
-import { GridTileImage } from '@/components/Grid/tile'
+import Grid from '@/components/grid'
+import { GridTileImage } from '@/components/grid/tile'
 import { Product } from '@/lib/shopify/types'
 import Link from 'next/link'
 
