@@ -19,7 +19,7 @@ export const sorting: SortFilterItem[] = [
     slug: 'trending-desc',
     sortKey: 'BEST_SELLING',
     reverse: false,
-  },
+  }, // asc
   {
     title: 'Latest arrivals',
     slug: 'latest-desc',

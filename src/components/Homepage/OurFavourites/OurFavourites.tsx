@@ -18,7 +18,7 @@ export default async function OurFavourites() {
           duration={3}
           once={false}
         />
-        <AnimatedButton text="SHOP NOW" ClassName="" link="/" />
+        <AnimatedButton text="SHOP NOW" ClassName="" link="/search" />
       </div>
       <OurFavouritesCarousel products={products} />
     </div>

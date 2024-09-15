@@ -1,5 +1,8 @@
 import { ensureStartsWith } from '../utils'
-import { getCollectionProductsQuery } from './queries/collections'
+import {
+  getCollectionProductsQuery,
+  getCollectionsQuery,
+} from './queries/collections'
 import {
   HIDDEN_PRODUCT_TAG,
   SHOPIFY_GRAPHQL_API_ENDPOINT,
@@ -191,4 +194,61 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
       altText: image.altText || `${productTitle} - ${filename}`,
     }
   })
+}
+
+const reshapeCollection = (
+  collection: ShopifyCollection
+): Collection | undefined => {
+  if (!collection) {
+    return undefined
+  }
+
+  return {
+    ...collection,
+    path: `/search/${collection.handle}`,
+  }
+}
+
+const reshapeCollections = (collections: ShopifyCollection[]) => {
+  const reshapedCollections = []
+
+  for (const collection of collections) {
+    if (collection) {
+      const reshapedCollection = reshapeCollection(collection)
+
+      if (reshapedCollection) {
+        reshapedCollections.push(reshapedCollection)
+      }
+    }
+  }
+
+  return reshapedCollections
+}
+
+export async function getCollections(): Promise<Collection[]> {
+  const res = await shopifyFetch<ShopifyCollectionsOperation>({
+    query: getCollectionsQuery,
+    tags: [TAGS.collections],
+  })
+  const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections)
+  const collections = [
+    {
+      handle: '',
+      title: 'All',
+      description: 'All products',
+      seo: {
+        title: 'All',
+        description: 'All products',
+      },
+      path: '/search',
+      updatedAt: new Date().toISOString(),
+    },
+    // Filter out the `hidden` collections.
+    // Collections that start with `hidden-*` need to be hidden on the search page.
+    ...reshapeCollections(shopifyCollections).filter(
+      (collection) => !collection.handle.startsWith('hidden')
+    ),
+  ]
+
+  return collections
 }
