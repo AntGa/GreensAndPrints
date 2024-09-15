@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ES2015", // Set target to ES2015 or higher
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -12,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "downlevelIteration": true, // Enable downlevel iteration support
     "plugins": [
       {
         "name": "next"
