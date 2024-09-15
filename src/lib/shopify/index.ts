@@ -33,7 +33,7 @@ import {
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
-} from '../types'
+} from './types'
 import {
   getProductQuery,
   getProductRecommendationsQuery,

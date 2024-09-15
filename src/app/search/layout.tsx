@@ -1,8 +1,8 @@
 import React from 'react'
-import { Collections } from '@/components/Search/Collections'
+import { Collections } from '@/components/layout/Search/Collections'
 import ChildrenWrapper from './children-wrapper'
 import { sorting } from '@/lib/constants'
-import FilterList from '@/components/Search/filter'
+import FilterList from '@/components/layout/Search/filter'
 export default function SearchLayout({
   children,
 }: {
