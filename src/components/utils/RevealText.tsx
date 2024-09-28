@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 interface AnimatedTextProps {
   text: string;
+  textclassName?: string;
   className?: string;
   duration?: number;
   once?: boolean;
@@ -27,12 +28,13 @@ const item = {
 export const RevealText: React.FC<AnimatedTextProps> = ({
   text,
   className = 'text-4xl',
+  textclassName = ' ',
   duration = 2,
   once = true,
 }) => {
   return (
     <motion.div
-      className='clipped'
+      className={`clipped ${className}`}
       variants={container}
       initial='hidden'
       whileInView='show'
@@ -41,7 +43,7 @@ export const RevealText: React.FC<AnimatedTextProps> = ({
     >
       {text.split('').map((char, index) => (
         <motion.span
-          className={`inline-block ${className}`}
+          className={`inline-block ${textclassName}`}
           variants={item}
           key={index}
         >
