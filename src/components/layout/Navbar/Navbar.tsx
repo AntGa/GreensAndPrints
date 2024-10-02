@@ -74,7 +74,7 @@ export const Navbar = () => {
 
           <ul className='m-6 hidden h-full items-center gap-9 font-geist text-lg xl:flex'>
             <NavbarLink
-              href='/products'
+              href='/search'
               label='All Products'
               isHovered={hoveredIndex === 0}
               onMouseEnter={() => handleMouseEnter(0)}

@@ -37,7 +37,7 @@ export function Gallery({
 
         {images.length > 1 ? (
           <div className='absolute bottom-[15%] flex w-full justify-center'>
-            <div className='mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur'>
+            <div className='mx-auto flex h-11 items-center rounded-full border border-soft-ivory bg-neutral-50/80 text-neutral-500 backdrop-blur'>
               <button
                 formAction={() => {
                   const newState = updateImage(previousImageIndex.toString());
