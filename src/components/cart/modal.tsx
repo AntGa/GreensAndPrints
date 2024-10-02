@@ -194,14 +194,7 @@ export default function CartModal() {
                       })}
                   </ul>
                   <div className='py-4 text-sm text-neutral-500'>
-                    <div className='mb-3 flex items-center justify-between border-b border-neutral-200 pb-1'>
-                      <p>Taxes</p>
-                      <Price
-                        className='text-right text-base text-black'
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
-                      />
-                    </div>
+                    <div className='mb-3 flex items-center justify-between border-b border-neutral-200 pb-1'></div>
                     <div className='mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1'>
                       <p>Shipping</p>
                       <p className='text-right'>Calculated at checkout</p>
