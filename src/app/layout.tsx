@@ -14,27 +14,23 @@ const Playfair = Playfair_Display({
   variable: '--font-playFair',
   weight: ['400', '500', '600', '700'],
 });
-});
 
 export const metadata: Metadata = {
   title: 'Greens & Prints',
   description: 'A family business',
-};
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  children: React.ReactNode;
 }>) {
   const cartId = cookies().get('cartId')?.value;
-  const cartId = cookies().get('cartId')?.value;
+
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
-  const cart = getCart(cartId);
+
   return (
-    <html lang='en' className='bg-soft-ivory'>
     <html lang='en' className='bg-soft-ivory'>
       <body className={`${Playfair.className} ${GeistSans.variable} relative`}>
         <CartProvider cartPromise={cart}>
@@ -47,6 +43,5 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
-  );
   );
 }

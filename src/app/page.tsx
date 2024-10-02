@@ -8,8 +8,6 @@ export default function Home() {
     <>
       <div className='min-h-screen bg-soft-ivory'>
         <div className='flex flex-col'>
-      <div className='min-h-screen bg-soft-ivory'>
-        <div className='flex flex-col'>
           <HeroBanner />
           <ValuesBanner />
           <TopCategories />
@@ -17,6 +15,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
   );
 }
