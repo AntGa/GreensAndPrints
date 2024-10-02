@@ -39,13 +39,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </button>
         <ul className='mt-4 flex flex-col space-y-4'>
           <li>
-            <Link href='/products'>All Products</Link>
+            <Link href='/search'>All Products</Link>
           </li>
           <li>
-            <Link href='/locations'>Locations</Link>
-          </li>
-          <li>
-            <Link href='/contact'>Contact Us</Link>
+            <Link href='/information/contact'>Contact Us</Link>
           </li>
         </ul>
       </div>
