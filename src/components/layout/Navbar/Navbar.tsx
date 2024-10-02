@@ -80,7 +80,7 @@ export const Navbar = () => {
               onMouseEnter={() => handleMouseEnter(0)}
             />
             <NavbarLink
-              href='/contact'
+              href='/information/contact'
               label='Contact Us'
               isHovered={hoveredIndex === 2}
               onMouseEnter={() => handleMouseEnter(2)}

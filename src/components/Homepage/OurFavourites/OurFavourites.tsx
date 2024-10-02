@@ -2,7 +2,7 @@ import React from 'react';
 import { RevealText } from '@/components/utils/RevealText';
 import { getCollectionProducts } from '@/lib/shopify';
 import OurFavouritesCarousel from './OurFavouritesCarousel';
-import { SlideUpButton } from '@/components/utils/SlideUpButtons/SlideUpButtonSimple';
+
 import AnimatedButton from '@/components/utils/SlideUpButtons/AnimatedButton';
 export default async function OurFavourites() {
   const products = await getCollectionProducts({
