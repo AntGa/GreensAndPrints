@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { Globe, Leaf, Package } from 'lucide-react';
 
 export const ValuesBanner = () => {
   const [emblaRef, embla] = useEmblaCarousel({ loop: true });
@@ -63,35 +64,44 @@ export const ValuesBanner = () => {
       embla.scrollTo(index);
     }
   };
-
+  //should really turn these into components
   const numberOfSlides = 3;
   return (
     <div className='values-carousel embla w-full bg-soft-ivory'>
       <div className='embla__viewport' ref={emblaRef}>
-        <div className='embla__container mx-auto flex'>
-          <div className='embla__slide flex w-full flex-col px-4'>
-            <h2 className='text-3xl font-bold'>Globally Sourced.</h2>
-            <h2 className='mb-2 text-3xl font-bold'>Locally Crafted</h2>
-            <p className='font-geist font-normal'>
-              Carefully selected, sustainably cultivated plants grown in our
-              local greenhouse right here in Auckland.
-            </p>
+        <div className='embla__container flex'>
+          <div className='embla__slide flex w-full gap-6 px-4'>
+            <Globe size={150} />
+            <div className='flex flex-col'>
+              <h2 className='text-3xl font-bold'>Globally Sourced.</h2>
+              <h2 className='mb-2 text-3xl font-bold'>Locally Crafted</h2>
+              <p className='font-geist font-normal'>
+                Carefully selected, sustainably cultivated plants grown in our
+                local greenhouse right here in Auckland.
+              </p>
+            </div>
           </div>
-          <div className='embla__slide flex w-full flex-col px-4'>
-            <h2 className='text-3xl font-bold'>Hand-Picked Quality.</h2>
-            <h2 className='mb-2 text-3xl font-bold'>Sustainably Grown</h2>
-            <p className='font-geist font-normal'>
-              We pride ourselves on hand-picking every plant to ensure premium
-              quality and sustainability.
-            </p>
+          <div className='embla__slide flex w-full gap-6 px-4'>
+            <Leaf size={150} />
+            <div className='flex flex-col'>
+              <h2 className='text-3xl font-bold'>Hand-Picked Quality.</h2>
+              <h2 className='mb-2 text-3xl font-bold'>Sustainably Grown</h2>
+              <p className='font-geist font-normal'>
+                We pride ourselves on hand-picking every plant to ensure premium
+                quality and sustainability.
+              </p>
+            </div>
           </div>
-          <div className='embla__slide flex w-full flex-col px-4'>
-            <h2 className='text-3xl font-bold'>Delivered with Care.</h2>
-            <h2 className='mb-2 text-3xl font-bold'>Responsibly Packaged</h2>
-            <p className='font-geist font-normal'>
-              Our plants are responsibly packaged and delivered to your doorstep
-              with the utmost care.
-            </p>
+          <div className='embla__slide flex w-full gap-6 px-4'>
+            <Package size={150} />
+            <div className='flex flex-col'>
+              <h2 className='text-3xl font-bold'>Delivered with Care.</h2>
+              <h2 className='mb-2 text-3xl font-bold'>Responsibly Packaged</h2>
+              <p className='font-geist font-normal'>
+                Our plants are responsibly packaged and delivered to your
+                doorstep with the utmost care.
+              </p>
+            </div>
           </div>
         </div>
       </div>

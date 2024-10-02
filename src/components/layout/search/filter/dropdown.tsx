@@ -1,29 +1,29 @@
-'use client'
+'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import type { ListItem } from '.'
-import { FilterItem } from './item'
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import type { ListItem } from '.';
+import { FilterItem } from './item';
 
 export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const [active, setActive] = useState('')
-  const [openSelect, setOpenSelect] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [active, setActive] = useState('');
+  const [openSelect, setOpenSelect] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setOpenSelect(false)
+        setOpenSelect(false);
       }
-    }
+    };
 
-    window.addEventListener('click', handleClickOutside)
-    return () => window.removeEventListener('click', handleClickOutside)
-  }, [])
+    window.addEventListener('click', handleClickOutside);
+    return () => window.removeEventListener('click', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     list.forEach((listItem: ListItem) => {
@@ -31,28 +31,28 @@ export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
         ('path' in listItem && pathname === listItem.path) ||
         ('slug' in listItem && searchParams.get('sort') === listItem.slug)
       ) {
-        setActive(listItem.title)
+        setActive(listItem.title);
       }
-    })
-  }, [pathname, list, searchParams])
+    });
+  }, [pathname, list, searchParams]);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className='relative' ref={ref}>
       <div
         onClick={() => {
-          setOpenSelect(!openSelect)
+          setOpenSelect(!openSelect);
         }}
-        className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30"
+        className='flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm'
       >
         <div>{active}</div>
-        <ChevronDownIcon className="h-4" />
+        <ChevronDownIcon className='h-4' />
       </div>
       {openSelect && (
         <div
           onClick={() => {
-            setOpenSelect(false)
+            setOpenSelect(false);
           }}
-          className="absolute z-40 w-full rounded-b-md bg-white p-4 shadow-md dark:bg-black"
+          className='absolute z-40 w-full rounded-b-md bg-white p-4 shadow-md'
         >
           {list.map((item: ListItem, i) => (
             <FilterItem key={i} item={item} />
@@ -60,5 +60,5 @@ export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
         </div>
       )}
     </div>
-  )
+  );
 }
