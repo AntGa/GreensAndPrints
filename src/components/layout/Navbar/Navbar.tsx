@@ -1,21 +1,23 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import Search from './search';
 import CartModal from '@/components/cart/modal';
+import Sidebar from './sidebar';
+import NavbarLink from '@/components/utils/navbarlink';
 
 export const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
-  const pathname = usePathname(); // Get current path
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Automatically set navbar to hovered state if not on home page
     if (pathname !== '/') {
       setIsNavbarHovered(true);
     } else {
@@ -27,44 +29,26 @@ export const Navbar = () => {
     setIsScrolled(latest > 50);
   });
 
-  const handleMouseEnter = () => {
-    setIsNavbarHovered(true);
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
   };
 
   const handleMouseLeave = () => {
-    // Keep navbar hovered if not on the home page
     if (pathname === '/') {
       setIsNavbarHovered(false);
     }
     setHoveredIndex(null);
   };
 
-  const handleLinkMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-  };
-
-  const navbar_variants = {
-    hovered: {
-      backgroundColor: '#F7F1E3',
-      color: '#333333',
-    },
-    not_hovered: {
-      backgroundColor: '#ffffff00',
-      color: '#F7F1E3',
-    },
-  };
-
-  const bar_variants = {
-    hovered: { maxWidth: '1920px', backgroundColor: '#000000' },
-    not_hovered: { maxWidth: '1380px', backgroundColor: '#F7F1E3' },
-  };
-
   return (
     <motion.div
-      className={`fixed left-0 top-0 z-50 w-full text-soft-ivory ${isNavbarHovered || isScrolled ? 'bg-hovered-color' : 'bg-transparent'}`}
-      onMouseEnter={handleMouseEnter}
+      className={`fixed left-0 top-0 z-50 w-full text-soft-ivory ${isNavbarHovered || isScrolled || isSidebarOpen ? 'bg-hovered-color' : 'bg-transparent'}`}
+      onMouseEnter={() => setIsNavbarHovered(true)}
       onMouseLeave={handleMouseLeave}
-      variants={navbar_variants}
+      variants={{
+        hovered: { backgroundColor: '#F7F1E3', color: '#333333' },
+        not_hovered: { backgroundColor: '#ffffff00', color: '#F7F1E3' },
+      }}
       animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
       transition={{ duration: 0.25 }}
     >
@@ -77,7 +61,8 @@ export const Navbar = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='size-6'
+              className='size-6 cursor-pointer'
+              onClick={() => setIsSidebarOpen(true)}
             >
               <path
                 strokeLinecap='round'
@@ -88,25 +73,18 @@ export const Navbar = () => {
           </div>
 
           <ul className='m-6 hidden h-full items-center gap-9 font-geist text-lg xl:flex'>
-            {['All Products', 'Locations', 'Contact Us'].map(
-              (item, index: number) => (
-                <li
-                  key={index}
-                  className='flex h-full flex-col items-center justify-center'
-                  onMouseEnter={() => handleLinkMouseEnter(index)}
-                >
-                  <Link href='/#'>{item}</Link>
-                  <motion.div
-                    className='h-[1px] w-full bg-black'
-                    initial={{ width: 0 }}
-                    animate={{
-                      width: hoveredIndex === index ? '100%' : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </li>
-              )
-            )}
+            <NavbarLink
+              href='/products'
+              label='All Products'
+              isHovered={hoveredIndex === 0}
+              onMouseEnter={() => handleMouseEnter(0)}
+            />
+            <NavbarLink
+              href='/contact'
+              label='Contact Us'
+              isHovered={hoveredIndex === 2}
+              onMouseEnter={() => handleMouseEnter(2)}
+            />
           </ul>
         </div>
 
@@ -124,12 +102,15 @@ export const Navbar = () => {
         </div>
       </div>
       <motion.div
-        variants={bar_variants}
         initial='not_hovered'
         animate={isNavbarHovered || isScrolled ? 'hovered' : 'not_hovered'}
         transition={{ duration: 0.8 }}
         className='mx-auto h-[0.5px] bg-black'
       />
+
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     </motion.div>
   );
 };
+
+export default Navbar;
