@@ -35,9 +35,7 @@ function SubmitButton({
         disabled
         className={clsx(buttonClasses, disabledClasses)}
       >
-        <div className='absolute left-0 ml-4'>
-          <PlusIcon className='h-5' />
-        </div>
+        <div className='absolute left-0 ml-4'></div>
         Add To Cart
       </button>
     );
@@ -50,9 +48,7 @@ function SubmitButton({
         'hover:opacity-90': true,
       })}
     >
-      <div className='absolute left-0 ml-4'>
-        <PlusIcon className='h-5' />
-      </div>
+      <div className='absolute left-0 ml-4'></div>
       Add To Cart
     </button>
   );
